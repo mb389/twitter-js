@@ -7,3 +7,5 @@
 ::1 - - [19/Jan/2016:19:08:40 +0000] "GET /special/text HTTP/1.1" 404 25 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36"
 ::1 - - [19/Jan/2016:19:08:54 +0000] "GET /special HTTP/1.1" 404 20 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36"
 ::1 - - [19/Jan/2016:19:09:08 +0000] "GET /special HTTP/1.1" 404 20 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36"
+::1 - - [19/Jan/2016:19:25:55 +0000] "GET / HTTP/1.1" 200 13 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36"
+::1 - - [19/Jan/2016:19:48:40 +0000] "GET / HTTP/1.1" 200 125 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36"
