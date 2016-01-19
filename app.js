@@ -2,20 +2,25 @@ var express=require("express");
 var morgan=require("morgan");
 var fs=require("fs");
 var swig=require("swig");
+var tweetBank=require("./tweetBank");
+var bodyParser=require("body-parser");
+var urlEncodedParsing=bodyParser.urlencoded({ extended: false });
+var jsonParsing=bodyParser.json();
+
+var socketio = require('socket.io');
+// ...
+
 swig.setDefaults({cache:false});
 var app=express();
 var routes = require('./routes/');
-app.use('/', routes);
+app.use( '/', routes(io) );
 
 app.use(express.static('public'));
 
+app.listen(1337,function(){console.log("hi");});
+var server = app.listen(1338);
+var io = socketio.listen(server);
 
-
-app.listen(1337,function(){
-console.log("listening on 1337");
-});
-
-var people =[{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
 
 app.engine("html",swig.renderFile);
 
@@ -27,8 +32,24 @@ var accessLogStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a
 
 // setup the logger
 app.use(morgan('combined', {stream: accessLogStream}));
+app.use(bodyParser.text({ type: 'text/html' }));
 
-app.get('/', function (req, res) {
-   res.render( 'index', {title: 'Hall of Fame', people: people} );
+var userRouter = express.Router();
+app.use('/users', userRouter);
 
-})
+userRouter.get('/:name', function(req, res) {
+  var name = req.params.name;
+  var list = tweetBank.find( {"name": name} );
+  res.render( 'index', { tweets: list, showForm:true, thisName: name } );
+});
+
+var mainRouter=express.Router();
+app.use('/', mainRouter);
+
+mainRouter.post("/tweets",urlEncodedParsing,function(req,res) {
+   var name = req.body.name;
+   var text = req.body.text;
+   tweetBank.add(name, text);
+   io.sockets.emit('new_tweet', { "name": name, "text": text });
+   res.redirect("/");
+});

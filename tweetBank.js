@@ -1,6 +1,17 @@
 var _ = require("lodash");
 
-var data=[];
+var data=[
+   { name: 'Scott Stackson',
+    text: 'Fullstack Academy is cool! The instructors are just so wonderful. #fullstacklove #codedreams' },
+  { name: 'Ayana Ternary',
+    text: 'Fullstack Academy is breathtaking! The instructors are just so breathtaking. #fullstacklove #codedreams' },
+  { name: 'Shanna Stackson',
+    text: 'Fullstack Academy is amazing! The instructors are just so mindblowing. #fullstacklove #codedreams' },
+  { name: 'Scott Ternary',
+    text: 'Fullstack Academy is breathtaking! The instructors are just so awesome. #fullstacklove #codedreams' },
+  { name: 'Ayana McQueue',
+    text: 'Fullstack Academy is amazing! The instructors are just so sweet. #fullstacklove #codedreams' }
+];
 
 function add (name, text) {
   data.push({ name: name, text: text });
@@ -14,25 +25,8 @@ function find (properties) {
   return _.filter(data, properties);
 };
 
-module.exports = { add: add, list: list, find: find };
+module.exports = { add: add, list: list, find: find, data: data };
 
 var randArrayEl = function(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
-
-var getFakeName = function() {
-  var fakeFirsts = ['Nimit', 'Dave', 'Shanna', 'Charlotte', 'Scott', 'Ayana', 'Omri', 'Gabriel', 'Joe'];
-  var fakeLasts = ['Hashington', 'Stackson', 'McQueue', 'OLogn', 'Ternary', 'Claujure', 'Dunderproto', 'Binder', 'Docsreader', 'Ecma'];
-  return randArrayEl(fakeFirsts) + " " + randArrayEl(fakeLasts);
-};
-
-var getFakeTweet = function() {
-  var awesome_adj = ['awesome', 'breathtaking', 'amazing', 'funny', 'sweet', 'cool', 'wonderful', 'mindblowing'];
-  return "Fullstack Academy is " + randArrayEl(awesome_adj) + "! The instructors are just so " + randArrayEl(awesome_adj) + ". #fullstacklove #codedreams";
-};
-
-for(var i=0; i<5; i++) {
-  module.exports.add( getFakeName(), getFakeTweet() );
-}
-
-console.log(data);
