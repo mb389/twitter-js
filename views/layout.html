@@ -85,12 +85,10 @@
   // Because the socket.io server is being run on the same server as your
   // Express instance, you can connect() without any arguments.
   var socket = io.connect();
-
   // When 'new_tweet' events are fired, do something with the packaged tweet
-  socket.on('new_tweet', function (tweet) {
-    console.log(tweet);
-    alert('Refreshing... check the console...');
-    // some logic to add the new tweet to the DOM…
+  socket.on('new_tweet', function (new_tweet) {
+     console.log(new_tweet);
+     location.reload();
   });
 </script>
 </html>

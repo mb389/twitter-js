@@ -1,4 +1,12 @@
 
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
 html,
 body {
   height: 100%;
@@ -52,6 +60,17 @@ code {
   width: 48px;
   content:url("http://lorempixel.com/48/48");
 }
+
+.text{
+  font-style: italic;
+}
+
+.special{
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
 .content {
   margin-left: 60px;
 }
